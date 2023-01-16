@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Security Camera</title>
+    <link rel="stylesheet" href="./send.php" />
+    <link rel="stylesheet" href="/Front-End/style.css" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Security Camera</h1>
+    <h4>Send Email or View your Video</h4>
+
+    <div class="form-container">
+      <form class="" action="./send.php" method="post">
+        <div class="input-field">
+          Email <input type="email" name="email" value="" /> <br />
+        </div>
+        <div class="input-field">
+          Subject <input type="text" name="subject" value="" /> <br />
+        </div>
+        <textarea name="message" cols="40" rows="20">
+Security Video link: http://172.16.2.84:8000</textarea
+        ><br />
+        <div class="button">
+          <button type="submit" name="send">Send Email</button>
+          <button type="submit" name="send">
+            <a href="http://172.16.2.84:8000" target="_blank">View Video</a>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <footer><p>VireakRoth 2022</p></footer>
+  </body>
+</html>
