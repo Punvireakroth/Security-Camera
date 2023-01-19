@@ -18,6 +18,19 @@ async function fetchAPI(name) {
   }
 }
 
+// Create a logtime function
+async function logTime() {
+  try {
+    const response = await fetch("http://localhost:5000/api/product/logtime", {
+      method: "POST",
+    });
+    const data = await response.json();
+    console.log(`Time logged: ${data.time}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // ------------------------------
 
 submitButton.addEventListener("click", async function () {
@@ -25,7 +38,9 @@ submitButton.addEventListener("click", async function () {
   try {
     const name = nameInput.value;
     const response = await fetchAPI(name);
+    logTime();
     emailDisplay.innerText = "Success";
+    emailDisplay.display = "block";
     // do something with the response
   } catch (error) {
     submitButton.innerText = "Error";
