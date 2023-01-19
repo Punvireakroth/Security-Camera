@@ -1,47 +1,17 @@
 const nodemailer = require("nodemailer");
 const { EMAIL, PASSWORD } = require("../env.js");
 const Mailgen = require("mailgen");
+const Datastore = require("nedb");
 
-/**  Send mail from testing account*/
-const signup = async (req, res) => {
-  // Testing account
-  let testAccount = await nodemailer.createTestAccount();
+// new instance of NeDB and its file location
+const db = new Datastore({ filename: "./db.json", autoload: true });
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
-  });
-
-  let message = {
-    from: '"VireakRoth 😂" <foo@example.com>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "You Have Open the Camera", // plain text body
-    html: "<b>You Have Open the Camera</b>", // html body}
-    // send mail with defined transport object
-  };
-
-  transporter
-    .sendMail(message)
-    .then((info) => {
-      return res.status(201).json({
-        msg: "You should recieve an email",
-        info: info.messageId,
-        preview: nodemailer.getTestMessageUrl(info),
-      });
-    })
-    .catch((error) => {
-      return res.status(500).json({ error });
-    });
-
-  //   res.status(201).json("Signup Successfully...");
-};
+// function handle when button is click create a new docs with current time then insert to NeDB database
+let currentTime = new Date();
+db.insert({ time: currentTime }, (err, newDoc) => {
+  if (err) console.error(err);
+  console.log("Time inserted:", newDoc.time);
+});
 
 /** send mail from real gmail account */
 const getbill = (req, res) => {
@@ -102,6 +72,5 @@ const getbill = (req, res) => {
 };
 
 module.exports = {
-  signup,
   getbill,
 };
