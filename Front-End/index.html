@@ -14,12 +14,19 @@
   </head>
   <body>
     <h1>Security Camera</h1>
-    <h4>Send Email or View your Video</h4>
-    <label for="submit-button" id="send">Send to client</label>
-    <input type="text" id="name-input" />
-
-    <div class="submit">
-      <button id="submit-button">Submit</button>
+    <hr class="breakLine" />
+    <!-- <h4>Send Email or View your Video</h4> -->
+    <div id="formInput">
+      <label for="submit-button" id="send"><h4>Send to client</h4></label>
+      <input
+        type="text"
+        id="name-input"
+        placeholder="email"
+        style="padding: 20px"
+      /><br />
+    </div>
+    <div id="submit-button">
+      <button>Submit</button>
     </div>
 
     <div id="email-display"></div>
