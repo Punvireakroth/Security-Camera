@@ -2,6 +2,8 @@ body {
   background-color: #e7f6f2;
   font-family: "Open Sans", sans-serif;
   align-items: center;
+
+  
 }
 
 h1,
@@ -13,7 +15,8 @@ h4 {
 }
 
 h1 {
-  color: #2c3333;
+  color: #395b64;
+  text-decoration: pink wavy underline;
 }
 h4 {
   color: #395b64;
@@ -52,11 +55,18 @@ a {
   width: 80%;
   margin-bottom: 50px;
 }
+
+.time {
+  display: flex;
+  justify-content: center;
+}
+
+
 #submit-button {
   display: flex;
   justify-content: center;
   margin-top: 30px;
-
+  margin-bottom: 50px;
 }
 button {
   margin-right: 80px;
