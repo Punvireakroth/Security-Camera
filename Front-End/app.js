@@ -2,6 +2,8 @@ let emailDisplay = document.getElementById("email-display");
 let submitButton = document.getElementById("submit-button");
 const nameInput = document.getElementById("name-input");
 
+//hide data when page load
+
 async function fetchAPI(name) {
   try {
     const response = await fetch("http://localhost:5000/api/product/getbill", {
@@ -23,6 +25,10 @@ async function logTime() {
   try {
     const response = await fetch("http://localhost:5000/api/product/logtime", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify({ email: email }),
     });
     const data = await response.json();
     console.log(`Time logged: ${data.time}`);
@@ -47,3 +53,16 @@ submitButton.addEventListener("click", async function () {
     console.error(error);
   }
 });
+
+// query data
+fetch("db.json")
+  .then((response) => response.json())
+  .then((jsonData) => {
+    let container = document.getElementById("container");
+    for (let i = 0; i < jsonData.length; i++) {
+      let time = new Date(jsonData[i].time["$$date"]);
+      let div = document.createElement("div");
+      div.innerHTML = time;
+      container.appendChild(div);
+    }
+  });
